@@ -32,7 +32,7 @@ const App = () => {
   return (
     <ReelsView
       data={reelsData}
-      renderItem={(item, index) => <YourCustomReel item={item} />}
+      
     />
   );
 };
