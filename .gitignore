@@ -1,0 +1,42 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+package-lock.json
+yarn.lock
+
+# TypeScript output (optional: keep if you want to commit dist)
+# If you want dist to be published but not versioned, ignore it
+# dist/
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Mac OS
+.DS_Store
+# Node
+node_modules/
+yarn.lock
+package-lock.json
+
+# TypeScript output (optional: include if you commit dist)
+# dist/
+
+# IDEs
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+
+# TypeScript source
+src/
+
+# Build / temporary files
+*.zip
+*.cpp
+*.log
+*.tmp
+

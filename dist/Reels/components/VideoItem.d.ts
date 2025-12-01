@@ -1,0 +1,3 @@
+import React from "react";
+declare const VideoItem: React.MemoExoticComponent<({ item, onSendComment, currentUser, index, currentIndex, isLiked, videoRefs, reelsDetails, toggleLike, playVideoAtIndex, pauseVideoAtIndex, screenHeight, muted, toggleMute, whoCommentedComponent, onBottomSheetOpen, onBottomSheetClose, whoReactedComponent, childRef, muteIcon, renderInputComponent, saveIcon, unsaveIcon, SaveComponent, customCommentsComponent, unMuteIcon, videosRef, reelsInteractionBar, LikeComponent, likeIcon, unlikeIcon, commentIcon, onLikeTextPress, topRightActionBar, }: any) => React.JSX.Element>;
+export default VideoItem;
