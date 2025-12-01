@@ -1,16 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_native_1 = require("react-native");
 const react_1 = require("react");
@@ -18,10 +6,8 @@ const react_native_safe_area_context_1 = require("react-native-safe-area-context
 const API_KEY = '51028846-bc7883b46347d8d05c0535553';
 const PAGE_SIZE = 10;
 const { height } = react_native_1.Dimensions.get('window');
-const axios_1 = __importDefault(require("axios"));
 const native_1 = require("@react-navigation/native");
-const useReels = () => {
-    const [videos, setVideos] = (0, react_1.useState)([]);
+const useReels = ({ videos }) => {
     const [page, setPage] = (0, react_1.useState)(1);
     const [loading, setLoading] = (0, react_1.useState)(true);
     const [error, setError] = (0, react_1.useState)(null);
@@ -46,30 +32,6 @@ const useReels = () => {
         }
         return height - (height * 11.5) / 100;
     }, []);
-    const fetchVideos = (pageNum) => __awaiter(void 0, void 0, void 0, function* () {
-        try {
-            setLoading(true);
-            const response = yield axios_1.default.get(`https://pixabay.com/api/videos/?key=${API_KEY}&q=nature&per_page=${PAGE_SIZE}&page=${pageNum}`);
-            if (response.data.hits.length === 0) {
-                setHasMore(false);
-                return;
-            }
-            if (pageNum === 1) {
-                setVideos(response.data.hits);
-            }
-            else {
-                setVideos(prev => [...prev, ...response.data.hits]);
-            }
-            setError(null);
-        }
-        catch (err) {
-            setError('Failed to fetch videos. Please try again.');
-            console.error(err);
-        }
-        finally {
-            setLoading(false);
-        }
-    });
     const togglePlayNPause = (index, isLongPress) => {
         var _a;
         const videoRef = videoRefs.current[(_a = videos[index]) === null || _a === void 0 ? void 0 : _a.id];
@@ -89,9 +51,11 @@ const useReels = () => {
             });
         }
     };
+    console.log('videoRefs.current[videos[index]?.id]', videoRefs.current);
     const playVideoAtIndex = (0, react_1.useCallback)((index) => {
         var _a;
         const videoRef = videoRefs.current[(_a = videos[index]) === null || _a === void 0 ? void 0 : _a.id];
+        console.log('Playing video ID:', videoRef);
         if (videoRef) {
             videoRef.resume();
         }
@@ -103,15 +67,6 @@ const useReels = () => {
             videoRef.pause();
         }
     }, [videos]);
-    (0, react_1.useEffect)(() => {
-        fetchVideos(1);
-    }, []);
-    const handleLoadMore = () => {
-        if (!loading && hasMore) {
-            setPage(prev => prev + 1);
-            fetchVideos(page + 1);
-        }
-    };
     const handleViewableItemsChanged = (0, react_1.useRef)(({ viewableItems }) => {
         if (viewableItems.length > 0) {
             const currentItem = viewableItems[0];
@@ -149,8 +104,6 @@ const useReels = () => {
         videoRefs,
         screenHeight,
         insets,
-        fetchVideos,
-        handleLoadMore,
         handleViewableItemsChanged,
         toggleLike,
         handleDoubleTap,

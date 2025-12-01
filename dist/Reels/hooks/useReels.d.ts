@@ -1,5 +1,7 @@
 import React from 'react';
-declare const useReels: () => {
+declare const useReels: ({ videos }: {
+    videos: any[];
+}) => {
     videos: any[];
     loading: boolean;
     error: any;
@@ -9,8 +11,6 @@ declare const useReels: () => {
     videoRefs: React.RefObject<any>;
     screenHeight: number;
     insets: import("react-native-safe-area-context").EdgeInsets;
-    fetchVideos: (pageNum: any) => Promise<void>;
-    handleLoadMore: () => void;
     handleViewableItemsChanged: ({ viewableItems }: any) => void;
     toggleLike: (videoId: any) => void;
     handleDoubleTap: (videoId: any) => void;
