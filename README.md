@@ -24,6 +24,13 @@ yarn add react-native-reels-view
 
 ---
 
+## Peer Dependencies
+
+Before using `react-native-reels-view`, make sure to install:
+
+```bash
+yarn add react-native-video react-native-reanimated react-native-gesture-handler
+
 ## 🚀 Basic Usage
 ```tsx
 import ReelsView from "react-native-reels-view";

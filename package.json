@@ -1,6 +1,6 @@
 {
   "name": "react-native-reels-view",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "A fully optimized React Native Reels/Shorts view component",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -27,14 +27,14 @@
     "react-native-gesture-handler": ">=2.0.0",
     "react-native-reanimated": ">=3.0.0",
     "react-native-video": ">=6.0.0",
-    "@react-navigation/native": ">=6.0.0"
-  },
-  "dependencies": {
-    "react-native-responsive-fontsize": "^0.5.1",
-    "react-native-responsive-screen": "^1.4.2",
+    "@react-navigation/native": ">=6.0.0",
     "react-native-safe-area-context": "^5.5.2",
     "react-native-screens": "~4.16.0",
     "react-native-vector-icons": "^10.3.0"
+  },
+  "dependencies": {
+    "react-native-responsive-fontsize": "^0.5.1",
+    "react-native-responsive-screen": "^1.4.2"
   },
   "keywords": [
     "react-native",
