@@ -13,6 +13,48 @@ This package helps you build:
 
 ---
 
+# React Native Reels View
+
+A fully customizable, high-performance **Instagram/TikTok-style Reels viewer** for React Native.  
+Built with TypeScript and designed for deeply interactive video feeds.
+
+---
+
+# ✨ Features
+
+- 🎥 **Smooth Auto-Play Reels**
+- 🔄 **Vertical reel pagination**
+- 🔊 **Mute / Unmute per video**
+- ❤️ **Double-tap Like animation**
+- 💬 **Comment bottom sheet**
+- 🤳 **Customizable author/details section**
+- ⭐ **Custom interaction bar**
+- 📌 **Save / Unsave functionality**
+- 🎛 **All UI overrideable via render functions**
+- ⚡ **Memoized + highly optimized**
+- 💨 **Instant load — components stay mounted**
+- 📲 **Works on both iOS & Android**
+
+---
+
+# 📸 Demo Preview
+
+## 📱 iOS
+![iOS Preview](./docs/ios-preview.gif)
+
+## 🤖 Android
+![Android Preview](./docs/android-preview.gif)
+
+---
+
+# 🎞 Full Demo  
+Click to watch the complete demo:
+
+[![Watch Demo]](https://www.linkedin.com/posts/smrr17_reactnative-reactnativedevelopment-reactnativecommunity-ugcPost-7401535432435355648-cxFt?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC4EQIoBa0IV3xqKjLf07ziacW-A3XX2_MQ)
+
+---
+
+
 ## 📦 Installation
 ```bash
 npm install react-native-reels-view
@@ -24,15 +66,17 @@ yarn add react-native-reels-view
 
 ---
 
+
+
 ## Peer Dependencies
 
 Before using `react-native-reels-view`, make sure to install:
 
-```bash
+
 yarn add react-native-video react-native-reanimated react-native-gesture-handler
 
 ## 🚀 Basic Usage
-```tsx
+``` 
 import ReelsView from "react-native-reels-view";
 
 const App = () => {

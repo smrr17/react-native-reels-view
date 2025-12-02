@@ -57,6 +57,7 @@ const VideoItem_1 = __importDefault(require("./components/VideoItem"));
 const Ionicons_1 = __importDefault(require("react-native-vector-icons/Ionicons"));
 const react_native_responsive_screen_1 = require("react-native-responsive-screen");
 const Reels = (_a) => {
+    var _b;
     var { canGoBack, saveIcon, unsaveIcon, SaveComponent, whoReactedComponent, customCommentsComponent, onSendComment, renderInputComponent, currentUser, goBackIcon, topRightActionBar, whoCommentedComponent, reelsDetails, onLikeTextPress, likeIcon, unlikeIcon, LikeComponent, initialLoading, loadingComponent, ref: outerRef, data: videos, onEndReached, onEndReachedThreshold, viewabilityConfig, ListFooterComponent, muteIcon, unMuteIcon, 
     // renderItem,
     videosRef, commentIcon, reelsInteractionBar } = _a, rest = __rest(_a, ["canGoBack", "saveIcon", "unsaveIcon", "SaveComponent", "whoReactedComponent", "customCommentsComponent", "onSendComment", "renderInputComponent", "currentUser", "goBackIcon", "topRightActionBar", "whoCommentedComponent", "reelsDetails", "onLikeTextPress", "likeIcon", "unlikeIcon", "LikeComponent", "initialLoading", "loadingComponent", "ref", "data", "onEndReached", "onEndReachedThreshold", "viewabilityConfig", "ListFooterComponent", "muteIcon", "unMuteIcon", "videosRef", "commentIcon", "reelsInteractionBar"]);
@@ -127,19 +128,19 @@ const Reels = (_a) => {
             }}>
           {goBackIcon ? (goBackIcon) : (<Ionicons_1.default name="arrow-back-circle" size={(0, react_native_responsive_fontsize_1.RFValue)(24)} color="white"/>)}
         </react_native_1.Pressable>)}
-      <react_native_gesture_handler_1.FlatList scrollEnabled={!isBottomSheetOpen} ref={listRef => {
+      <react_native_gesture_handler_1.FlatList scrollEnabled={!isBottomSheetOpen} ref={(listRef) => {
             flatListRef.current = listRef;
             if (outerRef) {
-                if (typeof outerRef === 'function') {
+                if (typeof outerRef === "function") {
                     outerRef(listRef);
                 }
                 else {
                     outerRef.current = listRef;
                 }
             }
-        }} data={videos !== null && videos !== void 0 ? videos : []} initialNumToRender={3} maxToRenderPerBatch={7} windowSize={10} keyExtractor={keyExtractor} horizontal={false} pagingEnabled refreshControl={
+        }} data={videos !== null && videos !== void 0 ? videos : []} initialNumToRender={3} maxToRenderPerBatch={7} windowSize={10} keyExtractor={keyExtractor} horizontal={false} pagingEnabled bounces={true} alwaysBounceVertical={true} refreshControl={
         // @ts-ignore
-        <react_native_1.RefreshControl colors={['#fff']} refreshing={rest.refreshing} onRefresh={rest.onRefresh}/>} showsVerticalScrollIndicator={false} onEndReached={onEndReached} onEndReachedThreshold={onEndReachedThreshold !== null && onEndReachedThreshold !== void 0 ? onEndReachedThreshold : 0.5} onViewableItemsChanged={handleViewableItemsChanged} viewabilityConfig={viewabilityConfig !== null && viewabilityConfig !== void 0 ? viewabilityConfig : {
+        <react_native_1.RefreshControl colors={["#fff"]} refreshing={(_b = rest === null || rest === void 0 ? void 0 : rest.refreshing) !== null && _b !== void 0 ? _b : false} onRefresh={rest === null || rest === void 0 ? void 0 : rest.onRefresh}/>} showsVerticalScrollIndicator={false} onEndReached={onEndReached} onEndReachedThreshold={onEndReachedThreshold !== null && onEndReachedThreshold !== void 0 ? onEndReachedThreshold : 0.5} onViewableItemsChanged={handleViewableItemsChanged} viewabilityConfig={viewabilityConfig !== null && viewabilityConfig !== void 0 ? viewabilityConfig : {
             itemVisiblePercentThreshold: 50,
         }} snapToInterval={videoItemHeight || screenHeight} decelerationRate="fast" removeClippedSubviews={true} ListFooterComponent={() => {
             if (ListFooterComponent) {
@@ -151,35 +152,35 @@ const Reels = (_a) => {
 exports.default = Reels;
 const styles = react_native_1.StyleSheet.create({
     backIcon: {
-        position: 'absolute',
+        position: "absolute",
         top: (0, react_native_responsive_screen_1.heightPercentageToDP)(7),
         left: (0, react_native_responsive_screen_1.widthPercentageToDP)(5),
         zIndex: 10,
     },
     container: {
         flex: 1,
-        backgroundColor: '#000',
+        backgroundColor: "#000",
     },
     loadingContainer: {
         flex: 1,
-        justifyContent: 'center',
-        backgroundColor: '#000',
-        alignItems: 'center',
+        justifyContent: "center",
+        backgroundColor: "#000",
+        alignItems: "center",
     },
     errorContainer: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: "center",
+        alignItems: "center",
         padding: 20,
     },
     errorText: {
-        color: 'red',
+        color: "red",
         fontSize: 18,
         marginBottom: 20,
-        textAlign: 'center',
+        textAlign: "center",
     },
     retryText: {
-        color: 'blue',
+        color: "blue",
         fontSize: 16,
     },
     videoContainer: {
@@ -187,27 +188,27 @@ const styles = react_native_1.StyleSheet.create({
     },
     videoWrapper: {
         flex: 1,
-        position: 'relative',
+        position: "relative",
     },
     video: {
-        width: '100%',
-        height: '100%',
+        width: "100%",
+        height: "100%",
     },
     overlay: {
-        position: 'absolute',
-        flexDirection: 'row',
-        alignItems: 'flex-end',
+        position: "absolute",
+        flexDirection: "row",
+        alignItems: "flex-end",
         left: 0,
         right: 0,
         bottom: 0,
-        justifyContent: 'space-between',
+        justifyContent: "space-between",
         padding: 20,
         marginBottom: (0, react_native_responsive_fontsize_1.RFValue)(10),
     },
     userInfo: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        alignSelf: 'flex-start',
+        flexDirection: "row",
+        alignItems: "center",
+        alignSelf: "flex-start",
     },
     profileImage: {
         width: 32,
@@ -216,22 +217,22 @@ const styles = react_native_1.StyleSheet.create({
         marginRight: 8,
     },
     userText: {
-        color: 'white',
+        color: "white",
     },
     audioLabel: {
         borderRadius: 20,
-        alignSelf: 'flex-start',
+        alignSelf: "flex-start",
     },
     audioText: {
-        color: 'white',
+        color: "white",
         fontSize: 14,
     },
     likeButton: {
-        alignSelf: 'flex-end',
-        alignItems: 'center',
+        alignSelf: "flex-end",
+        alignItems: "center",
     },
     likeCount: {
-        color: 'white',
+        color: "white",
         fontSize: 14,
         marginTop: 4,
     },

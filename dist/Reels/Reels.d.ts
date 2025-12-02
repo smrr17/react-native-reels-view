@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { FlatListProps } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
-import { VideoRef } from 'react-native-video';
+import * as React from "react";
+import { FlatListProps } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
+import { VideoRef } from "react-native-video";
 type MyListProps<T> = {
     data: T[];
     canGoBack?: boolean;
     onEndReached?: () => void;
     onEndReachedThreshold?: number;
-    viewabilityConfig?: FlatListProps<T>['viewabilityConfig'];
+    viewabilityConfig?: FlatListProps<T>["viewabilityConfig"];
     ListFooterComponent?: React.ReactNode;
     ref?: React.Ref<FlatList<T>> | null;
     initialLoading?: boolean;
@@ -71,6 +71,6 @@ type MyListProps<T> = {
         item: any;
         index: number;
     }) => React.ReactNode;
-} & Omit<FlatListProps<T>, 'renderItem'>;
+} & Omit<FlatListProps<T>, "renderItem">;
 declare const Reels: ({ canGoBack, saveIcon, unsaveIcon, SaveComponent, whoReactedComponent, customCommentsComponent, onSendComment, renderInputComponent, currentUser, goBackIcon, topRightActionBar, whoCommentedComponent, reelsDetails, onLikeTextPress, likeIcon, unlikeIcon, LikeComponent, initialLoading, loadingComponent, ref: outerRef, data: videos, onEndReached, onEndReachedThreshold, viewabilityConfig, ListFooterComponent, muteIcon, unMuteIcon, videosRef, commentIcon, reelsInteractionBar, ...rest }: MyListProps<any>) => React.JSX.Element;
 export default Reels;

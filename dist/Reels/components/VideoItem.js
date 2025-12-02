@@ -153,7 +153,7 @@ const VideoItem = (0, react_1.memo)(({ item, onSendComment, currentUser, index, 
                 {muteIcon || unMuteIcon ? (muted ? (muteIcon ? (muteIcon) : (<Ionicons_1.default name="volume-mute" size={(0, react_native_responsive_fontsize_1.RFValue)(24)} color={"white"}/>)) : unMuteIcon ? (unMuteIcon) : (<Ionicons_1.default name="volume-high" size={(0, react_native_responsive_fontsize_1.RFValue)(24)} color={"white"}/>)) : (<Ionicons_1.default size={(0, react_native_responsive_fontsize_1.RFValue)(24)} color={"white"} name={muted ? "volume-mute" : "volume-high"}/>)}
               </react_native_1.View>)}
 
-            <react_native_reanimated_1.default.View style={[styles.videoAnimationWrapper, animatedVideoStyle]}>
+            <react_native_reanimated_1.default.View pointerEvents={"none"} style={[styles.videoAnimationWrapper, animatedVideoStyle]}>
               <react_native_video_1.Video ref={(ref) => {
             videoRefs.current[item.id] = ref;
             if (typeof videosRef === "function") {
@@ -163,8 +163,7 @@ const VideoItem = (0, react_1.memo)(({ item, onSendComment, currentUser, index, 
                 videosRef.current = videoRefs.current;
             }
         }} source={{
-            // uri: item?.videos?.tiny?.url,
-            uri: "https://jnzjjlasclxzhjibqchp.supabase.co/storage/v1/object/public/videos/instasave.website_AQOZIH0Fi_l2Tp0X8ErhP-bB0TAJXf7212AczIbQwlm5kJaa2nHbxWOMOMHT5g4-J5P98eEJVfcJz3uQwCK-h3KXvizYNYLeBRk37nA.mp4",
+            uri: item === null || item === void 0 ? void 0 : item.url,
         }} rate={1.0} volume={muted ? 0 : 1.0} muted={muted} resizeMode={orientation === "portrait"
             ? react_native_video_1.ResizeMode.COVER
             : react_native_video_1.ResizeMode.CONTAIN} playWhenInactive={false} playInBackground={false} onLoad={(data) => {
