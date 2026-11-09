@@ -18,7 +18,7 @@
     "url": "https://github.com/smrr17/react-native-reels-view/issues"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "sh -c 'if [ -d src ]; then tsc; fi'",
     "prepare": "npm run build"
   },
   "peerDependencies": {
