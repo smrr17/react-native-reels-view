@@ -8,6 +8,7 @@ type MyListProps<T> = {
     onEndReached?: () => void;
     onEndReachedThreshold?: number;
     viewabilityConfig?: FlatListProps<T>["viewabilityConfig"];
+    initialScrollIndex?: number;
     ListFooterComponent?: React.ReactNode;
     ref?: React.Ref<FlatList<T>> | null;
     initialLoading?: boolean;
@@ -72,5 +73,5 @@ type MyListProps<T> = {
         index: number;
     }) => React.ReactNode;
 } & Omit<FlatListProps<T>, "renderItem">;
-declare const Reels: ({ canGoBack, saveIcon, unsaveIcon, SaveComponent, whoReactedComponent, customCommentsComponent, onSendComment, renderInputComponent, currentUser, goBackIcon, topRightActionBar, whoCommentedComponent, reelsDetails, onLikeTextPress, likeIcon, unlikeIcon, LikeComponent, initialLoading, loadingComponent, ref: outerRef, data: videos, onEndReached, onEndReachedThreshold, viewabilityConfig, ListFooterComponent, muteIcon, unMuteIcon, videosRef, commentIcon, reelsInteractionBar, ...rest }: MyListProps<any>) => React.JSX.Element;
+declare const Reels: ({ canGoBack, saveIcon, unsaveIcon, SaveComponent, whoReactedComponent, customCommentsComponent, onSendComment, renderInputComponent, currentUser, goBackIcon, topRightActionBar, whoCommentedComponent, reelsDetails, onLikeTextPress, likeIcon, unlikeIcon, LikeComponent, initialLoading, loadingComponent, ref: outerRef, data: videos, onEndReached, onEndReachedThreshold, viewabilityConfig, initialScrollIndex, ListFooterComponent, muteIcon, unMuteIcon, videosRef, commentIcon, reelsInteractionBar, ...rest }: MyListProps<any>) => React.JSX.Element;
 export default Reels;

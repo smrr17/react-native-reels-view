@@ -58,10 +58,31 @@ const Ionicons_1 = __importDefault(require("react-native-vector-icons/Ionicons")
 const react_native_responsive_screen_1 = require("react-native-responsive-screen");
 const Reels = (_a) => {
     var _b;
-    var { canGoBack, saveIcon, unsaveIcon, SaveComponent, whoReactedComponent, customCommentsComponent, onSendComment, renderInputComponent, currentUser, goBackIcon, topRightActionBar, whoCommentedComponent, reelsDetails, onLikeTextPress, likeIcon, unlikeIcon, LikeComponent, initialLoading, loadingComponent, ref: outerRef, data: videos, onEndReached, onEndReachedThreshold, viewabilityConfig, ListFooterComponent, muteIcon, unMuteIcon, 
+    var { canGoBack, saveIcon, unsaveIcon, SaveComponent, whoReactedComponent, customCommentsComponent, onSendComment, renderInputComponent, currentUser, goBackIcon, topRightActionBar, whoCommentedComponent, reelsDetails, onLikeTextPress, likeIcon, unlikeIcon, LikeComponent, initialLoading, loadingComponent, ref: outerRef, data: videos, onEndReached, onEndReachedThreshold, viewabilityConfig, initialScrollIndex, ListFooterComponent, muteIcon, unMuteIcon, 
     // renderItem,
-    videosRef, commentIcon, reelsInteractionBar } = _a, rest = __rest(_a, ["canGoBack", "saveIcon", "unsaveIcon", "SaveComponent", "whoReactedComponent", "customCommentsComponent", "onSendComment", "renderInputComponent", "currentUser", "goBackIcon", "topRightActionBar", "whoCommentedComponent", "reelsDetails", "onLikeTextPress", "likeIcon", "unlikeIcon", "LikeComponent", "initialLoading", "loadingComponent", "ref", "data", "onEndReached", "onEndReachedThreshold", "viewabilityConfig", "ListFooterComponent", "muteIcon", "unMuteIcon", "videosRef", "commentIcon", "reelsInteractionBar"]);
-    const { videoRefs, flatListRef, currentIndex, likedVideos, toggleLike, handleViewableItemsChanged, screenHeight, playVideoAtIndex, pauseVideoAtIndex, navigation, muted, toggleMute, childRef, setIsBottomSheetOpen, isBottomSheetOpen, setVideoItemHeight, videoItemHeight, } = (0, useReels_1.default)({ videos });
+    videosRef, commentIcon, reelsInteractionBar } = _a, rest = __rest(_a, ["canGoBack", "saveIcon", "unsaveIcon", "SaveComponent", "whoReactedComponent", "customCommentsComponent", "onSendComment", "renderInputComponent", "currentUser", "goBackIcon", "topRightActionBar", "whoCommentedComponent", "reelsDetails", "onLikeTextPress", "likeIcon", "unlikeIcon", "LikeComponent", "initialLoading", "loadingComponent", "ref", "data", "onEndReached", "onEndReachedThreshold", "viewabilityConfig", "initialScrollIndex", "ListFooterComponent", "muteIcon", "unMuteIcon", "videosRef", "commentIcon", "reelsInteractionBar"]);
+    const requestedIndex = Math.max(0, Math.floor(Number(initialScrollIndex) || 0));
+    const { videoRefs, flatListRef, currentIndex, likedVideos, toggleLike, handleViewableItemsChanged, screenHeight, playVideoAtIndex, pauseVideoAtIndex, navigation, muted, toggleMute, childRef, setIsBottomSheetOpen, isBottomSheetOpen, setVideoItemHeight, videoItemHeight, } = (0, useReels_1.default)({ videos, initialIndex: requestedIndex });
+    const itemHeight = videoItemHeight || screenHeight;
+    const dataLength = videos?.length ?? 0;
+    const startIndex = dataLength === 0 ? 0 : Math.min(requestedIndex, dataLength - 1);
+    const listReady = requestedIndex === 0 || (Boolean(videoItemHeight) && dataLength > 0);
+    const getItemLayout = (0, react_1.useCallback)((_, index) => ({
+        length: itemHeight,
+        offset: itemHeight * index,
+        index,
+    }), [itemHeight]);
+    (0, react_1.useEffect)(() => {
+        if (!listReady || startIndex <= 0)
+            return;
+        const frame = requestAnimationFrame(() => {
+            flatListRef.current?.scrollToOffset({
+                offset: itemHeight * startIndex,
+                animated: false,
+            });
+        });
+        return () => cancelAnimationFrame(frame);
+    }, [flatListRef, itemHeight, listReady, startIndex]);
     const renderVideoItem = (0, react_1.useCallback)(({ item, index }) => {
         const idKey = String(item.id);
         const isLiked = Boolean(likedVideos[idKey]);
@@ -128,7 +149,7 @@ const Reels = (_a) => {
             }}>
           {goBackIcon ? (goBackIcon) : (<Ionicons_1.default name="arrow-back-circle" size={(0, react_native_responsive_fontsize_1.RFValue)(24)} color="white"/>)}
         </react_native_1.Pressable>)}
-      <react_native_gesture_handler_1.FlatList scrollEnabled={!isBottomSheetOpen} ref={(listRef) => {
+      {listReady ? (<react_native_gesture_handler_1.FlatList scrollEnabled={!isBottomSheetOpen} ref={(listRef) => {
             flatListRef.current = listRef;
             if (outerRef) {
                 if (typeof outerRef === "function") {
@@ -146,7 +167,20 @@ const Reels = (_a) => {
             if (ListFooterComponent) {
                 return ListFooterComponent;
             }
-        }} renderItem={renderVideoItem} {...rest}/>
+        }} renderItem={renderVideoItem} {...rest} {...(requestedIndex > 0 ? {
+            initialScrollIndex: startIndex,
+            getItemLayout,
+            onScrollToIndexFailed: (info) => {
+                if (typeof rest.onScrollToIndexFailed === "function") {
+                    rest.onScrollToIndexFailed(info);
+                    return;
+                }
+                flatListRef.current?.scrollToOffset({
+                    offset: itemHeight * info.index,
+                    animated: false,
+                });
+            },
+        } : {})}/>) : (loadingComponent ?? (<react_native_1.ActivityIndicator size="large" color="#fff"/>))}
     </react_native_gesture_handler_1.GestureHandlerRootView>);
 };
 exports.default = Reels;

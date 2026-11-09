@@ -1,6 +1,7 @@
 import React from 'react';
-declare const useReels: ({ videos }: {
+declare const useReels: ({ videos, initialIndex }: {
     videos: any[];
+    initialIndex?: number;
 }) => {
     videos: any[];
     loading: boolean;

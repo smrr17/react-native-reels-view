@@ -8,6 +8,7 @@ export type MyListProps<T> = {
     onEndReached?: () => void;
     onEndReachedThreshold?: number;
     viewabilityConfig?: FlatListProps<T>["viewabilityConfig"];
+    initialScrollIndex?: number;
     ListFooterComponent?: React.ReactNode;
     ref?: React.Ref<FlatList<T>> | null;
     initialLoading?: boolean;

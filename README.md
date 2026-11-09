@@ -83,7 +83,7 @@ const App = () => {
   return (
     <ReelsView
       data={reelsData}
-      
+      initialScrollIndex={2}
     />
   );
 };
@@ -110,6 +110,13 @@ Custom renderer for each reel.
 If true, shows a back icon.
 
 ---
+
+## 🔹 **initialScrollIndex?: number**
+Opens the feed on this reel instead of the first one. Use it when someone taps a reel in a profile or grid and the full-screen viewer should start on that item. The matching video plays immediately.
+
+```tsx
+<ReelsView data={reelsData} initialScrollIndex={tappedIndex} />
+```
 
 ## 🔹 **onEndReached?: () => void**
 Triggered when the user scrolls to the last reel.

@@ -7,21 +7,35 @@ const API_KEY = '51028846-bc7883b46347d8d05c0535553';
 const PAGE_SIZE = 10;
 const { height } = react_native_1.Dimensions.get('window');
 const native_1 = require("@react-navigation/native");
-const useReels = ({ videos }) => {
+const clampIndex = (index, items) => {
+    const last = Math.max((items?.length ?? 0) - 1, 0);
+    const next = Math.floor(Number(index) || 0);
+    return Math.min(Math.max(next, 0), last);
+};
+const useReels = ({ videos, initialIndex = 0 }) => {
     const [page, setPage] = (0, react_1.useState)(1);
     const [loading, setLoading] = (0, react_1.useState)(true);
     const [error, setError] = (0, react_1.useState)(null);
     const [hasMore, setHasMore] = (0, react_1.useState)(true);
     const videoRefs = (0, react_1.useRef)({});
     const flatListRef = (0, react_1.useRef)(null);
-    const [currentIndex, setCurrentIndex] = (0, react_1.useState)(0);
+    const [currentIndex, setCurrentIndex] = (0, react_1.useState)(() => clampIndex(initialIndex, videos));
     const [likedVideos, setLikedVideos] = (0, react_1.useState)({});
     const insets = (0, react_native_safe_area_context_1.useSafeAreaInsets)();
     const [isBottomSheetOpen, setIsBottomSheetOpen] = (0, react_1.useState)(false);
     const focused = (0, native_1.useIsFocused)();
     const [videoItemHeight, setVideoItemHeight] = (0, react_1.useState)(null);
     const childRef = (0, react_1.useRef)(null);
-    const currentItemRef = (0, react_1.useRef)(videos[0]);
+    const currentItemRef = (0, react_1.useRef)(videos?.[clampIndex(initialIndex, videos)]);
+    const appliedStartRef = (0, react_1.useRef)((videos?.length ?? 0) > 0);
+    (0, react_1.useEffect)(() => {
+        if (appliedStartRef.current || !(videos?.length))
+            return;
+        appliedStartRef.current = true;
+        const next = clampIndex(initialIndex, videos);
+        currentItemRef.current = videos[next];
+        setCurrentIndex(next);
+    }, [videos, initialIndex]);
     const navigation = (0, native_1.useNavigation)();
     const [muted, setMuted] = (0, react_1.useState)(!focused ? true : false);
     const bottomSheetRef = (0, react_1.useRef)(null);
