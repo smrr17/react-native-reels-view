@@ -268,12 +268,3 @@ Perfect for building:
 
 # 📄 License
 MIT
-
----
-
-If you want, I can also generate:
-✔ npm‑ready README formatting
-✔ GitHub badges
-✔ Demo GIF placeholders
-✔ Example code folder
-
